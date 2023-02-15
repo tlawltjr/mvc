@@ -11,7 +11,7 @@ import com.fullstack.model.dao.MVCMemberDAO;
 import com.fullstack.model.dto.MVCMemberDTO;
 
 
-@WebServlet("/MemberController")
+@WebServlet(description = "회원가입컨트롤러", urlPatterns = {"/MemberController","/join/MemberController"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,8 +33,24 @@ public class MemberController extends HttpServlet {
     	//참고로 num필드는 기존 시퀀스값을 이용예정이니 시퀀스 있는지 확인하세요
     	//없으시면 만드시고 있으시면 currval값 찍어보세요
     	
-    	MVCMemberDAO dao;
-    	
+    	try {
+    		boolean result = MVCMemberDAO.getDao().registerMember(dto); 
+    		
+    		//회원가입이 제대로 됐다면 응답 페이지 viewer를 지정해서 
+    		//리다이렉션 합니다
+    		if(result) {
+    			request.setAttribute("dto", dto);
+    			request.setAttribute("result", "sucess");
+    			
+    			getServletContext().
+    			getRequestDispatcher("/join/mvcJoinRes.jsp").
+    			forward(request, response);
+    			//response.sendRedirect("/mvc/join/mvcJoinRes.jsp");
+    		}
+    	}catch (Exception e) {
+			// TODO: handle exception
+    		e.getMessage();
+		}
     	
     }
 
