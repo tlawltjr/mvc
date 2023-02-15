@@ -34,7 +34,7 @@ private Connection conn;
 	}
 	
 	public MVCMemberDTO createMem() {
-		MVCMemberDTO dto = null;
+		MVCMemberDTO dto = new MVCMemberDTO();
 		try {
 		String insertSql = "insert into MVC_MEMBER(num, id, pw) "
 				+ "values (MVC_SEQ.NEXTVAL,?,?)";

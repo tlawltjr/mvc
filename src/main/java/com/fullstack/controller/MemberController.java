@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fullstack.model.dao.MVCMemberDAO;
 import com.fullstack.model.dto.MVCMemberDTO;
 
 
@@ -32,7 +33,7 @@ public class MemberController extends HttpServlet {
     	//참고로 num필드는 기존 시퀀스값을 이용예정이니 시퀀스 있는지 확인하세요
     	//없으시면 만드시고 있으시면 currval값 찍어보세요
     	
-    	
+    	MVCMemberDAO dao;
     	
     	
     }
